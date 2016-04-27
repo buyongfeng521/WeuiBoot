@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- weui CSS -->
+    <link rel="stylesheet" href="css/weui.min.css">
+    <link rel="stylesheet" href="css/example.css">	
+</head>
+<body>
+    <div class="hd">
+        <h1 class="page_title">THREE</h1>
+    </div>
+    <div class="bd spacing">
+        <a href="javascript:;" class="weui_btn weui_btn_primary" id="showActionSheet" onclick="showSheet()">点击上拉菜单</a>
+    </div>
+    <!--BEGIN actionSheet-->
+    <div id="actionSheet_wrap">
+        <div class="weui_mask_transition" id="mask"></div>
+        <div class="weui_actionsheet" id="weui_actionsheet">
+            <div class="weui_actionsheet_menu">
+                <div class="weui_actionsheet_cell">示例菜单</div>
+                <div class="weui_actionsheet_cell">示例菜单</div>
+                <div class="weui_actionsheet_cell">示例菜单</div>
+                <div class="weui_actionsheet_cell">示例菜单</div>
+            </div>
+            <div class="weui_actionsheet_action">
+                <div class="weui_actionsheet_cell" id="actionsheet_cancel">取消</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- jQuery -->
+<script src="js/jquery-1.12.3.min.js"></script>
+<script>
+	function showSheet () {
+            var mask = $('#mask');
+            var weuiActionsheet = $('#weui_actionsheet');
+            weuiActionsheet.addClass('weui_actionsheet_toggle');
+            mask.show().addClass('weui_fade_toggle').one('click', function () {
+                hideActionSheet(weuiActionsheet, mask);
+            });
+            $('#actionsheet_cancel').one('click', function () {
+                hideActionSheet(weuiActionsheet, mask);
+            });
+            weuiActionsheet.unbind('transitionend').unbind('webkitTransitionEnd');
+
+            function hideActionSheet(weuiActionsheet, mask) {
+                weuiActionsheet.removeClass('weui_actionsheet_toggle');
+                mask.removeClass('weui_fade_toggle');
+                weuiActionsheet.on('transitionend', function () {
+                    mask.hide();
+                }).on('webkitTransitionEnd', function () {
+                    mask.hide();
+                })
+            }
+        }
+</script>
+
+</html>

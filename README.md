@@ -1,2 +1,2 @@
 # WeuiBoot
-微信WEUI + Bootstrap4
+微信WEUI
